@@ -1,0 +1,288 @@
+---
+title: "Individual Quiz"
+author: "Cucio, Dranreb James"
+date: "7/25/2021"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+<style>
+body{text-align: justify}
+</style>
+
+```{r include=FALSE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color,
+      x)
+  } else x
+}
+```
+
+```{r setup, echo=FALSE, cache=FALSE}
+## numbers >= 10^5 will be denoted in scientific notation,
+## and rounded to 2 digits
+options(scipen = 1, digits = 4)
+```
+
+# Question 1
+
+<style>
+div.blue {background-color: #e6f0ff; border-radius: 2px; padding: 20px;}
+
+
+</style>
+<div class = "blue">
+
+The life hours of a battery is known to be approximately normally distributed with standard deviation $\sigma = 2.5$ hours. A random sample of 10 batteries has mean life of $\bar{x} = 40.5$ hours.
+</div>
+
+***
+
+</style>
+<div class = "blue">
+A. Is there evidence to support the claim that battery life exceeds 40 hours? Use $\alpha = 0.05$.
+</div>
+
+The parameter of interest is $\mu$, the mean battery life. From the problem, the formulation of the null and alternative hypothesis are as follows:
+
+-   $H_0: \mu = 40$ hours
+-   $H_1: \mu > 40$ hours
+
+It is noted that the significance level $\alpha =0.05$. To compute for the upper boundary of the critical region, the code chunk below provides the desired number.
+
+```{r}
+library(stats)
+alpha=0.05
+crit1 = qnorm(alpha, lower.tail = F); crit1
+```
+
+Hence, our critical region is $z_0 >$ `r crit1`. That means if our test statistic $z_0$ falls on the critical region,  the null hypothesis is rejected with $\alpha = 0.05$. The figure below shows the distribution with the critical region.
+
+```{r Figure1, fig.align='center', fig.cap="Figure 1: Critical region with alpha = 0.05", echo=FALSE, out.width="50%"}
+par(mar=c(2,1,1,1))
+curve(dnorm(x,0,1), xlim=c(-3,3), axes=F, xlab = "", ylab = "")
+
+to.z <- 3
+from.z <- qnorm(0.05,lower.tail = F)
+
+S.x <- c(from.z, seq(from.z, to.z, 0.01), to.z)
+S.y <- c(0, dnorm(seq(from.z, to.z, 0.01)), 0)
+
+polygon(S.x, S.y, col = "#e6f0ff")
+axis(1, at=c(-3,0,-1,-2,3), pos=0)
+
+ticks = round(from.z,digits=3)
+axis(1,at=ticks, pos=0)
+
+```
+
+```{r ConfInt, eval=FALSE, include=FALSE}
+le=mu-3*sd; ue=mu+3*sd
+curve(dnorm(x,mu,sd), xlim=c(le,ue), xlab = "", ylab = "",axes=F)
+
+to.z <- mu + qnorm(0.95)
+from.z <- mu-3*sd
+
+ub = mu + crit1*sd/sqrt(n)
+
+
+
+i <- x < ub
+polygon(c(ub,x[i],ue),c(0,hx[i],0), col="#e6f0ff")
+
+axis(1, at=seq(0,1000,20), pos=0)
+mtext("Critical region with alpha = 0.05", 3)
+```
+
+Moreover, the test statistic $z_0$ to be used is indicated below. Substitute the given values to it.
+
+$$
+z_0 = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} = \dfrac{40.5-40}{2.5/\sqrt{10}}
+$$
+```{r}
+mu=40; xbar=40.5; sd=2.5; n=10; 
+zstat = (xbar-mu)/(sd/sqrt(n))
+```
+
+Using the formula and the code of R, the resulting test statistic is $z_0=$ `r zstat`.
+
+
+**Conclusion:** Since $z_0 =$ `r zstat` and is not within the critical region $z_0>$ `r crit1`, the null hypothesis fails to be rejected at $\alpha=0.05$. `r colorize("In relation to the context, there is no sufficient evidence to support the claim that the mean battery life exceeds 40 hours." , "#77DD77")`
+
+</style>
+<div class = "blue">
+B. What is the *P*-value for the test in part A?
+</div>
+
+The *P*-value of a right-tailed z-test is defined as:
+
+$$
+P=1- \Phi(|z_0|)
+$$
+
+where $\Phi(z)$ is the area to the left of $z$ in the normal distribution curve $N(0,1)$. The *P*-value can be computed using the `stats` library with code below. 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+pval = 1-pnorm(40.5, mean=40, sd=2.5/sqrt(10)); pval
+```
+
+Thus, the test has a *P*-value of `r pval`. Since the *P*-value is not less than the significance level of 0.05, we fail to reject the null hypothesis. Note that this is the same decision performed above.
+
+</style>
+<div class = "blue">
+C. What is the $\beta$-error for the text in part B if the true mean life is 42 hours?
+</div>
+
+If the true mean is 42, that would mean the deviation from the hypothesized mean would be $\delta=42-40 = 2$. To visualize the situation, figure 2 is provided below.
+
+```{r Figure2, fig.align='center', fig.cap="Figure 2: Type II error when true mean is 42", echo=FALSE, fig.width=5}
+par(mar=c(4,1,1,1))
+
+trumu=42; n=10; CI = mu + sd*qnorm(0.05,lower.tail = F)/sqrt(n)
+lb = mu-3*sd
+
+curve(dnorm(x,mu,sd), xlim=c(lb,50), axes=F, xlab = "", ylab = "") #hypothetical mean
+
+par(new=T)
+curve(dnorm(x,trumu,sd), xlim=c(lb,50), axes=F, xlab = "", ylab = "")
+
+y <- seq(-3,3,0.001)*sd + trumu 
+hy <- dnorm(y, trumu, sd)
+
+i <- y <= 41
+lines(y,hy)
+polygon(c(lb,y[i],41),c(0,hy[i],0), col="#e6f0ff")
+
+axis(1, at=c(lb,50), pos=0)
+axis(1, at=c(40,42), pos=0)
+
+abline(v= c(40,42), col="lightgrey" )
+```
+
+
+Now, to compute for the $\beta$-error, the formula below will be used:
+
+$$\beta = \Phi\left(z_{\alpha}-\dfrac{\delta\sqrt{n}}{\sigma}\right) = \Phi\left(z_{0.05}-\dfrac{2\sqrt{10}}{2.5} \right)$$
+
+Calculate the type II error in R:
+```{r}
+beta = pnorm(qnorm(0.05,lower.tail = F) - (2 * sqrt(10)/2.5)); beta
+```
+
+Thus, the probability of committing a type II error is **`r beta`**.
+
+</style>
+<div class = "blue">
+D. What sample size would be required to ensure that $\beta$ does not exceed 0.10 if the true mean is 44 hours?
+</div>
+
+To compute for the sample size, we need to know first the type II error when the true mean is 44 hours. Thus, $\delta=44-40=4$ in this case. Similar with the previous item, the formula to be used is :
+
+$$\beta = \Phi\left(z_{\alpha}-\dfrac{\delta\sqrt{n}}{\sigma}\right) = \Phi\left(z_{0.05}-\dfrac{4\sqrt{10}}{2.5} \right)$$
+
+```{r}
+beta = pnorm(qnorm(0.05,lower.tail = F) - (4 * sqrt(10)/2.5)); beta
+```
+Calculate the type II error in R results to $\beta=$ `r beta`. Now, we will use the formula below to find the sample size in order to have a difference $\delta=0.1$.
+
+$$n\approx \dfrac{(z_{\alpha}+z_{\beta})^2\sigma^2}{\delta^2} \approx \dfrac{(z_{\alpha}+z_{\beta})^2(2.5)^2}{0.10^2}$$ 
+We compute for $z_{\beta}$ by using the `qnorm` function in the `stats` library of R.
+
+```{r}
+zalpha = qnorm(alpha,lower.tail = F)
+zbeta = qnorm(beta,lower.tail = F); zbeta
+```
+
+Now, substitute the given values to the formula:
+
+```{r}
+delta=0.1
+newn=((zalpha+zbeta)^2 *sd^2 )/(delta)^2; newn
+```
+
+Thus, the approximate sample size needed to have a $\beta$ does not exceed 0.01 is **`r newn`**.
+
+</style>
+<div class = "blue">
+E. Explain how you could answer the question in part A by calculating an appropriate bound on battery life.
+</div>
+
+We establish the confidence interval for our hypothesis test which is:
+
+$$\bar{x} +z_{\alpha}\left(\dfrac{\sigma}{\sqrt{n}} \right) \leq \mu$$
+
+Substituting the values, this will give us:
+
+```{r}
+Conf1 = xbar + zalpha*sd/sqrt(n); Conf1
+```
+
+Thus the confidence interval is `r Conf1` $\leq \mu$. Notice that the sample mean of 40.5 is found within the confidence interval reaching a conclusion similar to part A. `r colorize("That is, we fail to reject the null hypothesis as there is insufficient evidence to do so.", "#77DD77")`
+
+***
+
+# Question 2
+
+</style>
+<div class = "blue">
+Brand A Gasoline was used in 16 similar automobiles under identical conditions. The corresponding sample of 16 values (miles per gallon) had mean 19.6 and standard deviation 0.4. Under the same conditions, high-power brand B gasoline gave a sample of 16 values with mean 20.2 and standard deviation 0.6. Is the mileage of B significantly better than that of A? Assume normality. Test the hypothesis using both *P*-value and fixed significance level with $\alpha=0.05$ approaches (if possible).
+</div>
+
+First, notice that the sample standard deviations are almost equal. From there, we can assume that the two populations have equal variances $\sigma^2_1 = \sigma^2_2$.
+
+We then establish our null and alternative hypothesis from the problem as follows: 
+
+- $H_0: \mu_A - \mu_B = 0$ 
+- $H_1: \mu_A - \mu_B < 0$ 
+
+Note that the alternative hypothesis has the same meaning as $H_1: \mu_A < \mu_B$ where it can be interpreted as the mileage of Gasoline B is better than that of A.
+
+To test the hypothesis, the $t$-test where variances are assumed to be equal will be utilized. With that, the test statistic will be $t_0$ as follows: $$t_0 = \dfrac{\bar{x_1} - \bar{x_2}- 0}{s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}} $$
+
+We have degrees of freedom $df=n_1+n_2-2=30$. To find the critical region, the code below is executed.
+
+```{r}
+alpha=0.05; df=30
+crit2 = qt(alpha, df)
+```
+The resulting critical region is $t_0<$ `r crit2`. That means that if the test statistic is within the region, we reject the null hypothesis.Compute for the test statistic afterwards.
+
+```{r}
+xbarA = 19.6; sA=0.4; nA=16; xbarB=20.2; sB =0.6; nB=16
+Sp = sqrt(((nA-1)*(sA)^2+(nB-1)*(sB)^2)/(nA+nB-2))
+tstat = (xbarA-xbarB-0)/(Sp*sqrt((1/nA) + (1/nB)))
+```
+Thus, we have a resulting test statistic of $t_o=$ `r tstat`. Note that `r tstat` is within the critical region of $t_0\lt$ `r crit2`, so we reject the null hypothesis.
+
+Another way to perform the t-test in R is by utilizing the `BSDA` library. The code chunk below performs the pooled t-test for our hypothesis quickly.
+
+```{r tsum.test, echo=c(2,3), message=FALSE, warning=FALSE}
+options(digits=7)
+library(BSDA)
+item2 = tsum.test(19.6, s.x = 0.4, n.x = 16, 20.2, s.y = 0.6, n.y = 16, 
+          alternative = "l", mu = 0, var.equal = TRUE, conf.level = 0.95); item2
+options(digits=4)
+```
+
+Note that the p-value of the test is `r item2$p.value` which is less than the significance level $\alpha=0.05$ .  `r colorize("Thus, the null hypothesis is rejected and there is sufficient evidence to claim that the mileage using gasoline B is significantly better than of gasoline A.", "#77DD77")`
+
+The confidence interval is computed as follows:
+$$
+\mu_1 - \mu_2 \geq \bar{x}_1 - \bar{x}_2 -t_{\alpha,n_1+n_2-2} \ s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}} 
+$$
+```{r, echo=FALSE}
+CI2 = xbarA - xbarB - 0 - qt(0.05, df)*Sp*sqrt(1/nA + 1/nB)
+```
+
+
+The same conclusion will be held when looking at the confidence interval of the t-test. The 95% confidence interval of the test is $\mu_1-\mu_2\geq$ `r CI2`. Moreover, the difference of means $\mu_1-\mu_2=0$ is included in the said interval. Hence, at this interval, we cannot conclude that there is a difference in the means. `r colorize("Similar with the conclusion using p-values, the mileage usage in gasoline B is significantly better than of gasoline A.", "#77DD77")`
+
+
+# References
+
+- D. C. Montgomery and G. C. Runger, Applied statistics and probability for engineers. New York: Wiley, 2003. 

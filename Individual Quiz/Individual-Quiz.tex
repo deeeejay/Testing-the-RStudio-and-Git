@@ -1,0 +1,441 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Individual Quiz},
+  pdfauthor={Cucio, Dranreb James},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Individual Quiz}
+\author{Cucio, Dranreb James}
+\date{7/22/2021}
+
+\begin{document}
+\maketitle
+
+\hypertarget{question-1}{%
+\section{Question 1}\label{question-1}}
+
+The life hours of a battery is known to be approximately normally
+distributed with standard deviation \(\sigma = 2.5\) hours. A random
+sample of 10 batteries has mean life of \(\bar{x} = 40.5\) hours.
+
+A. Is there evidence to support the claim that battery life exceeds 40
+hours? Use \(\alpha=0.05\).
+
+The parameter of interest is \(\mu\), the mean battery life. From the
+problem, we can formulate our null and alternative hypothesis as
+follows:
+
+\begin{itemize}
+\tightlist
+\item
+  \(H_0: \mu = 40\) hours
+\item
+  \(H_1: \mu > 40\) hours
+\end{itemize}
+
+It is noted that the significance level \(\alpha =0.05\). To compute for
+the upper boundary of the critical region, the code chunk below provides
+the desired number.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tinytex)}
+\FunctionTok{library}\NormalTok{(stats)}
+\NormalTok{alpha}\OtherTok{=}\FloatTok{0.05}
+\NormalTok{crit1 }\OtherTok{=} \FunctionTok{abs}\NormalTok{(}\FunctionTok{qnorm}\NormalTok{(alpha)); crit1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.644854
+\end{verbatim}
+
+Hence, our critical region is \(z_0 > 1.644854\). That means if our test
+statistic \(z_0\) falls on the critical region, we will reject the null
+hypothesis with \(\alpha = 0.05\).
+
+Moreover, the test statistic \(z_0\) to be used is indicated as:
+
+\[
+z_0 = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}
+\]
+
+We will use the \texttt{BSDA} library to perform a \(z\)-test on our
+hypothesis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \FunctionTok{library}\NormalTok{(BSDA)}
+\NormalTok{ item1 }\OtherTok{=} \FunctionTok{zsum.test}\NormalTok{(}\FloatTok{40.5}\NormalTok{, }\AttributeTok{sigma.x=}\FloatTok{2.5}\NormalTok{, }\AttributeTok{n.x=}\DecValTok{10}\NormalTok{, }\AttributeTok{mean.y =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sigma.y =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{n.y =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{, }\AttributeTok{mu=}\DecValTok{40}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.95}\NormalTok{); item1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample z-Test
+## 
+## data:  Summarized x
+## z = 0.63246, p-value = 0.2635
+## alternative hypothesis: true mean is greater than 40
+## 95 percent confidence interval:
+##  39.19963       NA
+## sample estimates:
+## mean of x 
+##      40.5
+\end{verbatim}
+
+With \(z\)-test, results show that \(z_0 =0.63246\).
+
+\textbf{Conclusion:} Since \(z_0 = 0.63\) and is not within the critical
+region, we fail to reject the null hypothesis at \(\alpha=0.05\). In
+relation to the context, there is no sufficient evidence to support the
+claim that the mean battery life exceeds 40 hours.
+
+B. What is the \emph{P}-value for the test in part A?
+
+We will still use the results of the one-sample \(z\)-test above.
+Clearly, it indicates that the \emph{P}-value of the test is
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \FunctionTok{library}\NormalTok{(BSDA)}
+ \FunctionTok{zsum.test}\NormalTok{(}\FloatTok{40.5}\NormalTok{, }\AttributeTok{sigma.x =} \FloatTok{2.5}\NormalTok{, }\AttributeTok{n.x=}\DecValTok{10}\NormalTok{, }\AttributeTok{mean.y =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{sigma.y =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{n.y =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{, }\AttributeTok{mu=}\DecValTok{40}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One-sample z-Test
+## 
+## data:  Summarized x
+## z = 0.63246, p-value = 0.2635
+## alternative hypothesis: true mean is greater than 40
+## 95 percent confidence interval:
+##  39.19963       NA
+## sample estimates:
+## mean of x 
+##      40.5
+\end{verbatim}
+
+Also, the \emph{P}-value can also be computed using the code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+ \DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pnorm}\NormalTok{(}\FloatTok{40.5}\NormalTok{, }\AttributeTok{mean=}\DecValTok{40}\NormalTok{, }\AttributeTok{sd=}\FloatTok{2.5}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2635446
+\end{verbatim}
+
+C. What is the \(\beta\)-error for the text in part B if the true mean
+life is 42 hours?
+
+If the true mean is 42, that would mean the deviation from the
+hypothesized mean would be \(\delta=42-40 = 2\). Now, to compute for the
+\(\beta\)-error, we will utilize the formula
+
+\[\beta = \Phi(z_{\alpha}-\dfrac{\delta\sqrt{n}}{\sigma})-\Phi(-z_{\alpha}-\dfrac{\delta\sqrt{n}}{\sigma})\]
+
+where the resulting \(\beta\)-error can be computed with the code below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(stats)}
+\NormalTok{delta}\OtherTok{=}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+When the sample size is 35, then standard deviation of the true mean,
+sem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n}\OtherTok{=}\DecValTok{10}
+\NormalTok{sigma}\OtherTok{=}\FloatTok{2.5}
+\NormalTok{sem }\OtherTok{=}\NormalTok{ sigma}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n); sem}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7905694
+\end{verbatim}
+
+Then, we compute for the upper bound of the critical region in terms of
+battery hours in which the null hypothesis \(\mu=40\) will be not
+rejected.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{alpha}\OtherTok{=}\NormalTok{.}\DecValTok{05}
+\NormalTok{mu0}\OtherTok{=}\DecValTok{40}
+\NormalTok{q }\OtherTok{=} \FunctionTok{qnorm}\NormalTok{(alpha,}\AttributeTok{mean=}\NormalTok{mu0,}\AttributeTok{sd=}\NormalTok{sem,}\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{); q}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 41.30037
+\end{verbatim}
+
+This means that as long as the sample mean is less than 41.30037, the
+null hypothesis will not be rejected. If the assumed true population
+mean is 42, the probability density below 41.30037 can be computed as
+follows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{trumu }\OtherTok{=} \DecValTok{42}
+\NormalTok{beta }\OtherTok{=} \FunctionTok{pnorm}\NormalTok{(q,}\AttributeTok{mean=}\NormalTok{trumu,}\AttributeTok{sd=}\NormalTok{sem); beta}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1880868
+\end{verbatim}
+
+Thus, the probability of committing a type II error is
+\textbf{0.1880868}.
+
+D. What sample size would be required to ensure that \(\beta\) does not
+exceed 0.10 if the true mean is 44 hours?
+
+To compute for the sample size, we need to know first the type II error
+when the true mean is 44 hours. Similar with the previous item, the
+standard deviation sem, and the value of the upper bound of the
+acceptance q is already solved. We just need to compute for \(\beta\)
+which will result to the code below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{trumu }\OtherTok{=} \DecValTok{44}
+\NormalTok{beta }\OtherTok{=} \FunctionTok{pnorm}\NormalTok{(q,}\AttributeTok{mean=}\NormalTok{trumu, }\AttributeTok{sd=}\NormalTok{sem); beta}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.0003191553
+\end{verbatim}
+
+Now, we will use the formula below to find the sample size in order to
+have a difference \(\delta=0.1\).
+
+\[n\approx \dfrac{(z_{\alpha}+z_{\beta})^2\sigma^2}{\delta^2} \] We
+compute for \(z_{\beta}\) by using the \texttt{pnorm} function in the
+\texttt{stats} library of R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{zalpha }\OtherTok{=} \FunctionTok{abs}\NormalTok{(}\FunctionTok{qnorm}\NormalTok{(alpha,}\AttributeTok{mean=}\DecValTok{0}\NormalTok{,}\AttributeTok{sd=}\DecValTok{1}\NormalTok{))}
+\NormalTok{zbeta }\OtherTok{=} \FunctionTok{abs}\NormalTok{(}\FunctionTok{qnorm}\NormalTok{(beta,}\AttributeTok{mean=}\DecValTok{0}\NormalTok{,}\AttributeTok{sd=}\DecValTok{1}\NormalTok{)); zbeta}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.414791
+\end{verbatim}
+
+Now, substitute the given values to the formula:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{delta}\OtherTok{=}\FloatTok{0.1}
+\NormalTok{n}\OtherTok{=}\NormalTok{((zalpha}\SpecialCharTok{+}\NormalTok{zbeta)}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{*}\NormalTok{sigma}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ )}\SpecialCharTok{/}\NormalTok{(delta)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{; n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16000
+\end{verbatim}
+
+Thus, the approximate sample size needed to have a \(\beta\) does not
+exceed 0.01 is \textbf{\ensuremath{1.6\times 10^{4}}}.
+
+E. Explain how you could answer the question in part A by calculating an
+appropriate bound on battery life.
+
+We establish the confidence interval for our hypothesis test which is:
+
+\[\bar{x} -z_{\alpha}\left(\dfrac{\sigma}{\sqrt{n}} \right) \leq \mu\]
+
+Substituting the values, this will give us:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{xbar }\OtherTok{=} \FloatTok{40.5}
+\NormalTok{ xbar }\SpecialCharTok{{-}}\NormalTok{ zalpha}\SpecialCharTok{*}\NormalTok{sem}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 39.19963
+\end{verbatim}
+
+Thus the confidence interval is \(39.19963 \leq \mu\). Notice that the
+sample mean of 40.5 is found within the confidence interval reaching a
+conclusion similar to part A. That is, we fail to reject the null
+hypothesis as there is insufficient evidence to do so.
+
+\hypertarget{question-2}{%
+\section{Question 2}\label{question-2}}
+
+Brand A Gasoline was used in 16 similar automobiles under identical
+conditions. The corresponding sample of 16 values (miles per gallon) had
+mean 19.6 and standard deviation 0.4. Under the same conditions,
+high-power brand B gasoline gave a sample of 16 values with mean 20.2
+and standard deviation 0.6. Is the mileage of B significantly better
+than that of A? Assume normality. Test the hypothesis using both
+\emph{P}-value and fixed significance level with \(\alpha=0.05\)
+approaches (if possible).
+
+First, notice that the sample standard deviations are almost equal. From
+there, we can assume that the two populations have equal variances
+\(\sigma^2_1 = \sigma^2_2\).
+
+We then establish our null and alternative hypothesis from the problem
+as follows: * \(H_0: \mu_A - \mu_B = 0\) * \(H_1: \mu_A - \mu_B < 0\)
+Note that the alternative hypothesis has the same meaning as
+\(H_1: \mu_A < \mu_B\) where it can be interpreted as the mileage of
+Gasoline B is better than that of A.
+
+To test the hypothesis, the \(t\)-test where variances are assumed to be
+equal will be utilized. With that, the test statistic will be \(t_0\) as
+follows:
+\[t_0 = \dfrac{\bar{x_1} - \bar{x_2}- 0}{s_p\sqrt{\dfrac{1}{n_1}+\dfrac{1}{n_2}}} \]
+
+The code chunk below performs the pooled t-test for our hypothesis.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{item2 }\OtherTok{=} \FunctionTok{tsum.test}\NormalTok{(}\FloatTok{19.6}\NormalTok{, }\AttributeTok{s.x =} \FloatTok{0.4}\NormalTok{, }\AttributeTok{n.x =} \DecValTok{16}\NormalTok{, }\FloatTok{20.2}\NormalTok{, }\AttributeTok{s.y =} \FloatTok{0.6}\NormalTok{, }\AttributeTok{n.y =} \DecValTok{16}\NormalTok{, }
+          \AttributeTok{alternative =} \StringTok{"less"}\NormalTok{, }\AttributeTok{mu =} \DecValTok{0}\NormalTok{, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{conf.level =} \FloatTok{0.95}\NormalTok{); item2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Standard Two-Sample t-Test
+## 
+## data:  Summarized x and y
+## t = -3.3282, df = 30, p-value = 0.001161
+## alternative hypothesis: true difference in means is less than 0
+## 95 percent confidence interval:
+##          NA -0.2940219
+## sample estimates:
+## mean of x mean of y 
+##      19.6      20.2
+\end{verbatim}
+
+Note that the p-value of the test is 0.001161 which is less than the
+significance level \(\alpha=0.05\). Thus, we reject the null hypothesis
+and there is sufficient evidence to the claim that the mileage using
+gasoline B is better than of gasoline A.
+
+Also, the same conclusion will be held when looking at the confidence
+interval of the t-test. The 95\% confidence interval of the test is
+\(\mu_1-\mu_2>-0.2940219\). Moreover, the difference of means
+\(\mu_1-\mu_2=0\) is included in the said interval. Hence, at this
+interval, we cannot conclude that there is a difference in the means.
+Similar with the conclusion using p-values, the mileage usage in
+gasoline B is better than of gasoline A.
+
+\end{document}
